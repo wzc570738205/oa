@@ -2,7 +2,7 @@
  * @Author: wangzhichiao<https://github.com/wzc570738205>
  * @Date: 2020-05-07 20:54:02
  * @LastEditors: wangzhichiao<https://github.com/wzc570738205>
- * @LastEditTime: 2020-05-08 13:56:23
+ * @LastEditTime: 2020-05-08 14:19:30
  -->
 <!DOCTYPE html>
 <html lang="en">
@@ -18,39 +18,59 @@
       crossorigin="anonymous"
     />
 
-
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
   </head>
-  <body>  
-    <button type="button" class="btn btn-primary" onclick="postmesage('首页' ,'应用')">跳转到首页</button>
-    <button type="button" class="btn btn-primary" onclick="postmesage('工程管理' ,'信息')">跳转到工程管理</button>
-    <button type="button" class="btn btn-primary" onclick="postmesage('组织管理' ,'应用')">打开组织管理</button>
-    <button type="button" class="btn btn-primary" onclick="postmesage('项目管理' ,'流程')">打开项目管理</button>
+  <body>
+    <button
+      type="button"
+      class="btn btn-primary"
+      onclick="postmesage('首页' ,'应用')"
+    >
+      跳转到首页
+    </button>
+    <button
+      type="button"
+      class="btn btn-primary"
+      onclick="postmesage('工程管理' ,'信息')"
+    >
+      跳转到工程管理
+    </button>
+    <button
+      type="button"
+      class="btn btn-primary"
+      onclick="postmesage('组织管理' ,'应用')"
+    >
+      打开组织管理
+    </button>
+    <button
+      type="button"
+      class="btn btn-primary"
+      onclick="postmesage('项目管理' ,'流程')"
+    >
+      打开项目管理
+    </button>
 
     <div class="alert alert-success" role="alert">信息-员工管理-信息</div>
-    <table class="table table-bordered" id="table">
-    
-   
-      </table>
+    <table class="table table-bordered" id="table"></table>
   </body>
 </html>
 <script>
-  let url = location.href.split("?")[1].split("=")
+  let url = location.href.split("?")[1].split("=");
   axios({
-  method:'post',
-  url:'http://118.190.235.60:20020/x_cms_assemble_control/jaxrs/view/viewdata/list/(0)/next/20?v=2.3.1',
-  headers: { "x-token": url[1] },
-  data: {
-          orderField: "createTime",
-          orderType: "DESC",
-          categoryId: "fb9779a5-a478-4cfc-b179-9221b436184f",
-          viewId: "7151430f-ecab-4a89-a892-54eb228610f1",
-          searchDocStatus: "published",
-        }
-})
-  .then(function (response) {
-      let html = '';
-      html+=`
+    method: "post",
+    url:
+      "http://118.190.235.60:20020/x_cms_assemble_control/jaxrs/view/viewdata/list/(0)/next/20?v=2.3.1",
+    headers: { "x-token": url[1] },
+    data: {
+      orderField: "createTime",
+      orderType: "DESC",
+      categoryId: "fb9779a5-a478-4cfc-b179-9221b436184f",
+      viewId: "7151430f-ecab-4a89-a892-54eb228610f1",
+      searchDocStatus: "published",
+    },
+  }).then(function (response) {
+    let html = "";
+    html += `
       <tr>
          <th>员工编号</th>
          <th>员工姓名</th>
@@ -59,28 +79,40 @@
          <th>部门</th>
          <th>职务</th>
          <th>联系电话</th>
-     </tr>`
-      response.data.data.forEach(res=>{
-          html+=`
+     </tr>`;
+    response.data.data.forEach((res) => {
+      html +=
+        `
           <tr>
-                <td>`+res.data['员工编号']+`</td>
-                <td>`+res.data['员工姓名']+`</td>
-                <td>`+res.data['入职日期']+`</td>
-                <td>`+res.data['工种']+`</td>
-                <td>`+res.data['部门']+`</td>
-                <td>`+res.data['职务']+`</td>
-                <td>`+res.data['联系电话']+`</td>
+                <td>` +
+        res.data["员工编号"] +
+        `</td>
+                <td>` +
+        res.data["员工姓名"] +
+        `</td>
+                <td>` +
+        res.data["入职日期"] +
+        `</td>
+                <td>` +
+        res.data["工种"] +
+        `</td>
+                <td>` +
+        res.data["部门"] +
+        `</td>
+                <td>` +
+        res.data["职务"] +
+        `</td>
+                <td>` +
+        res.data["联系电话"] +
+        `</td>
            </tr>
-          `
-      })
-      document.getElementById('table').innerHTML = html;
-  console.log(response.data)
+          `;
+    });
+    document.getElementById("table").innerHTML = html;
+    console.log(response.data);
   });
 
-/*   let a = window.parent.document;
-  console.log(a); */
-  console.log(document.referrer);
-  console.log(location.href);
+  /*   
   //document.getElementsByClassName('layout_menu_start_button')[0].click()
   //document.getElementsByClassName('layout_start_item')[17].click()
   //document.getElementsByClassName('layout_content_taskbar_item')[0].getElementsByClassName('layout_content_taskbar_item_text')[0].click()
@@ -90,16 +122,11 @@
   )[0].nextElementSiblingstyle.cssText = "display:none!important";
   document.getElementsByClassName("layout_menu_start_button")[0].click(); */
 
-  document.getElementById('home').onclick = function(){
-    parent.postMessage("GetWhiteLabel","*")
-   // window.parent.document.getElementsByClassName('layout_content_taskbar_item')[0].getElementsByClassName('layout_content_taskbar_item_text')[0].click() 
-   //window.opener.postMessage('Nice to see you', 'http://118.190.235.60');
-  }
-  function postmesage(name,tab){
-    let obj={
-      name:name,
-      tab:tab,
-    }
-    parent.postMessage(JSON.stringify(obj),"*")
+  function postmesage(name, tab) {
+    let obj = {
+      name: name,
+      tab: tab,
+    };
+    parent.postMessage(JSON.stringify(obj), "*");
   }
 </script>
