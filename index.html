@@ -2,7 +2,7 @@
  * @Author: wangzhichiao<https://github.com/wzc570738205>
  * @Date: 2020-05-07 20:54:02
  * @LastEditors: wangzhichiao<https://github.com/wzc570738205>
- * @LastEditTime: 2020-05-08 13:33:32
+ * @LastEditTime: 2020-05-08 13:53:32
  -->
 <!DOCTYPE html>
 <html lang="en">
@@ -22,9 +22,10 @@
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
   </head>
   <body>  
-    <button type="button" class="btn btn-primary" onclick="postmesage('首页')">跳转到首页</button>
-    <button type="button" class="btn btn-primary" onclick="postmesage('工程管理')">跳转到工程管理</button>
-    <button type="button" class="btn btn-primary" onclick="postmesage('组织管理')">打开组织管理</button>
+    <button type="button" class="btn btn-primary" onclick="postmesage('首页' ,'应用')">跳转到首页</button>
+    <button type="button" class="btn btn-primary" onclick="postmesage('工程管理' ,'信息')">跳转到工程管理</button>
+    <button type="button" class="btn btn-primary" onclick="postmesage('组织管理' ,'应用')">打开组织管理</button>
+    <button type="button" class="btn btn-primary" onclick="postmesage('项目管理' ,'流程')">打开组织管理</button>
 
     <div class="alert alert-success" role="alert">信息-员工管理-信息</div>
     <table class="table table-bordered" id="table">
@@ -94,7 +95,11 @@
    // window.parent.document.getElementsByClassName('layout_content_taskbar_item')[0].getElementsByClassName('layout_content_taskbar_item_text')[0].click() 
    //window.opener.postMessage('Nice to see you', 'http://118.190.235.60');
   }
-  function postmesage(mes){
-    parent.postMessage(mes,"*")
+  function postmesage(mes,tab){
+    let obj={
+      name:name,
+      tab:tab,
+    }
+    parent.postMessage(JSON.stringify(obj),"*")
   }
 </script>
