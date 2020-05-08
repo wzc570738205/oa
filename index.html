@@ -2,7 +2,7 @@
  * @Author: wangzhichiao<https://github.com/wzc570738205>
  * @Date: 2020-05-07 20:54:02
  * @LastEditors: wangzhichiao<https://github.com/wzc570738205>
- * @LastEditTime: 2020-05-08 12:23:59
+ * @LastEditTime: 2020-05-08 12:28:29
  -->
 <!DOCTYPE html>
 <html lang="en">
@@ -88,7 +88,8 @@
   document.getElementsByClassName("layout_menu_start_button")[0].click(); */
 
   document.getElementById('home').onclick = function(){
+    parent.postMessage("GetWhiteLabel","*")
    // window.parent.document.getElementsByClassName('layout_content_taskbar_item')[0].getElementsByClassName('layout_content_taskbar_item_text')[0].click() 
-   window.opener.postMessage('Nice to see you', 'http://118.190.235.60');
+   //window.opener.postMessage('Nice to see you', 'http://118.190.235.60');
   }
 </script>
