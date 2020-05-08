@@ -2,7 +2,7 @@
  * @Author: wangzhichiao<https://github.com/wzc570738205>
  * @Date: 2020-05-07 20:54:02
  * @LastEditors: wangzhichiao<https://github.com/wzc570738205>
- * @LastEditTime: 2020-05-08 12:28:29
+ * @LastEditTime: 2020-05-08 13:25:06
  -->
 <!DOCTYPE html>
 <html lang="en">
@@ -22,7 +22,8 @@
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
   </head>
   <body>  
-    <button type="button" class="btn btn-primary" id="home">跳转到首页</button>
+    <button type="button" class="btn btn-primary" onclick="postmesage('home')">跳转到首页</button>
+    <button type="button" class="btn btn-primary" onclick="postmesage('工程管理')">跳转到工程管理</button>
 
     <div class="alert alert-success" role="alert">信息-员工管理-信息</div>
     <table class="table table-bordered" id="table">
@@ -91,5 +92,8 @@
     parent.postMessage("GetWhiteLabel","*")
    // window.parent.document.getElementsByClassName('layout_content_taskbar_item')[0].getElementsByClassName('layout_content_taskbar_item_text')[0].click() 
    //window.opener.postMessage('Nice to see you', 'http://118.190.235.60');
+  }
+  function postmesage(mes){
+    parent.postMessage(mes,"*")
   }
 </script>
