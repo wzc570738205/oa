@@ -2,7 +2,7 @@
  * @Author: wangzhichiao<https://github.com/wzc570738205>
  * @Date: 2020-05-07 20:54:02
  * @LastEditors: wangzhichiao<https://github.com/wzc570738205>
- * @LastEditTime: 2020-05-08 11:05:11
+ * @LastEditTime: 2020-05-08 11:07:38
  -->
 <!DOCTYPE html>
 <html lang="en">
@@ -32,10 +32,11 @@
   </body>
 </html>
 <script>
+  let url = location.href.split("?")[1].split("=")
   axios({
   method:'post',
   url:'http://118.190.235.60:20020/x_cms_assemble_control/jaxrs/view/viewdata/list/(0)/next/20?v=2.3.1',
-  headers: { "x-token": 'HeEoZIVgPjTy0VxORcl9SIETtr-KlqelEIdiuKMfurQ' },
+  headers: { "x-token": url[1] },
   data: {
           orderField: "createTime",
           orderType: "DESC",
